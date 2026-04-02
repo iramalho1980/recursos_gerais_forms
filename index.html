@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Implantação - Thomson Reuters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(to right, #19547b, #ffd89b);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-color: #ffffff;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 300;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: var(--text-color);
+            transition: background 0.5s ease;
+        }
+
+        .container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        h1, h2 {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr auto;
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .contact-title {
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #ffd89b;
+            text-transform: uppercase;
+        }
+
+        .btn-add {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--glass-border);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .btn-add:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        .btn-remove {
+            background: rgba(255, 0, 0, 0.2);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .btn-remove:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .btn-submit:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Skin Selector */
+        .skin-selector-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .skin-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--glass-border);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .skin-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .skin-menu {
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 10px;
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            width: 200px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .skin-option {
+            height: 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+
+        .skin-option:hover {
+            transform: scale(1.05);
+        }
+
+        /* Skins */
+        .skin-1 { background: linear-gradient(to right, #19547b, #ffd89b); }
+        .skin-2 { background: linear-gradient(to right, #004e92, #000428); }
+        .skin-3 { background: linear-gradient(to right, #237A57, #093028); }
+        .skin-4 { background: linear-gradient(to right, #283E51, #4B79A1); }
+        .skin-5 { background: linear-gradient(to right, #2C5364, #203A43, #0F2027); }
+
+        @media (max-width: 600px) {
+            .row {
+                grid-template-columns: 1fr;
+            }
+            .btn-remove {
+                justify-self: end;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Implantação de Cliente</h1>
+        
+        <form id="implantacaoForm">
+            <div class="form-group">
+                <label>NOME DO ESCRITÓRIO:</label>
+                <input type="text" id="nome_escritorio" required>
+            </div>
+
+            <div class="form-group">
+                <label>QUANTIDADE TOTAL DE EMPRESAS:</label>
+                <input type="number" id="qtd_total" required>
+            </div>
+
+            <div class="row" style="grid-template-columns: 1fr 1fr 1fr;">
+                <div class="form-group">
+                    <label>FISCAL:</label>
+                    <input type="number" id="qtd_fiscal">
+                </div>
+                <div class="form-group">
+                    <label>CONTÁBIL:</label>
+                    <input type="number" id="qtd_contabil">
+                </div>
+                <div class="form-group">
+                    <label>FOLHA:</label>
+                    <input type="number" id="qtd_folha">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>POSSUI ALGUM BUSCADOR DE NOTAS? (SIEG, CONTA AZUL, BUSCA NFE):</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <select id="possui_buscador" style="width: 80px;">
+                        <option value="NÃO">NÃO</option>
+                        <option value="SIM">SIM</option>
+                    </select>
+                    <input type="text" id="nome_buscador" placeholder="Se sim, informe o nome...">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>TOTAL DE EMPREGADOS MAIS PROLABORE NA FOLHA:</label>
+                <input type="number" id="total_empregados">
+            </div>
+
+            <h2>DADOS DE CONTATO</h2>
+
+            <!-- Responsável Fiscal -->
+            <div class="contact-section" id="section_fiscal">
+                <div class="contact-header">
+                    <div class="contact-title">RESPONSÁVEL IMPLANTAÇÃO ESCRITA FISCAL</div>
+                    <div class="btn-add" onclick="addContactRow('section_fiscal')"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="contact-rows">
+                    <div class="row">
+                        <input type="text" class="c-nome" placeholder="Nome">
+                        <input type="email" class="c-email" placeholder="E-mail">
+                        <input type="text" class="c-whats" placeholder="WhatsApp">
+                        <div style="width: 24px;"></div> <!-- Spacer for alignment -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsável Contabilidade -->
+            <div class="contact-section" id="section_contabil">
+                <div class="contact-header">
+                    <div class="contact-title">RESPONSÁVEL IMPLANTAÇÃO CONTABILIDADE</div>
+                    <div class="btn-add" onclick="addContactRow('section_contabil')"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="contact-rows">
+                    <div class="row">
+                        <input type="text" class="c-nome" placeholder="Nome">
+                        <input type="email" class="c-email" placeholder="E-mail">
+                        <input type="text" class="c-whats" placeholder="WhatsApp">
+                        <div style="width: 24px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsável Folha -->
+            <div class="contact-section" id="section_folha">
+                <div class="contact-header">
+                    <div class="contact-title">RESPONSÁVEL IMPLANTAÇÃO FOLHA DE PAGAMENTOS</div>
+                    <div class="btn-add" onclick="addContactRow('section_folha')"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="contact-rows">
+                    <div class="row">
+                        <input type="text" class="c-nome" placeholder="Nome">
+                        <input type="email" class="c-email" placeholder="E-mail">
+                        <input type="text" class="c-whats" placeholder="WhatsApp">
+                        <div style="width: 24px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsável Geral -->
+            <div class="contact-section" id="section_geral">
+                <div class="contact-header">
+                    <div class="contact-title">RESPONSÁVEL IMPLANTAÇÃO GERAL</div>
+                    <div class="btn-add" onclick="addContactRow('section_geral')"><i class="fas fa-plus"></i></div>
+                </div>
+                <div class="contact-rows">
+                    <div class="row">
+                        <input type="text" class="c-nome" placeholder="Nome">
+                        <input type="email" class="c-email" placeholder="E-mail">
+                        <input type="text" class="c-whats" placeholder="WhatsApp">
+                        <div style="width: 24px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Expectativa de uso completo do sistema:</label>
+                <input type="date" id="expectativa_uso">
+            </div>
+
+            <div class="form-group">
+                <label>Vai usar o módulo Honorários (financeiro)?</label>
+                <select id="usa_honorarios">
+                    <option value="Não">Não</option>
+                    <option value="Sim">Sim</option>
+                </select>
+            </div>
+
+            <h2>Particularidades das empresas</h2>
+            <div class="form-group">
+                <label>FOLHA:</label>
+                <textarea id="part_folha" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>FISCAL:</label>
+                <textarea id="part_fiscal" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label>CONTÁBIL:</label>
+                <textarea id="part_contabil" rows="2"></textarea>
+            </div>
+
+            <button type="button" class="btn-submit" onclick="enviarFormulario()">ENVIAR</button>
+        </form>
+    </div>
+
+    <!-- Skin Selector -->
+    <div class="skin-selector-container">
+        <div class="skin-menu" id="skinMenu">
+            <div class="skin-option skin-1" onclick="changeSkin(1)"></div>
+            <div class="skin-option skin-2" onclick="changeSkin(2)"></div>
+            <div class="skin-option skin-3" onclick="changeSkin(3)"></div>
+            <div class="skin-option skin-4" onclick="changeSkin(4)"></div>
+            <div class="skin-option skin-5" onclick="changeSkin(5)"></div>
+        </div>
+        <div class="skin-btn" onclick="toggleSkinMenu()">
+            <i class="fas fa-cog"></i>
+        </div>
+    </div>
+
+    <script>
+        function toggleSkinMenu() {
+            const menu = document.getElementById('skinMenu');
+            menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function changeSkin(id) {
+            const gradients = [
+                'linear-gradient(to right, #19547b, #ffd89b)',
+                'linear-gradient(to right, #004e92, #000428)',
+                'linear-gradient(to right, #237A57, #093028)',
+                'linear-gradient(to right, #283E51, #4B79A1)',
+                'linear-gradient(to right, #2C5364, #203A43, #0F2027)'
+            ];
+            document.body.style.background = gradients[id-1];
+            document.body.style.backgroundAttachment = 'fixed';
+            toggleSkinMenu();
+        }
+
+        function addContactRow(sectionId) {
+            const container = document.querySelector(`#${sectionId} .contact-rows`);
+            const newRow = document.createElement('div');
+            newRow.className = 'row';
+            newRow.innerHTML = `
+                <input type="text" class="c-nome" placeholder="Nome">
+                <input type="email" class="c-email" placeholder="E-mail">
+                <input type="text" class="c-whats" placeholder="WhatsApp">
+                <div class="btn-remove" onclick="this.parentElement.remove()"><i class="fas fa-minus"></i></div>
+            `;
+            container.appendChild(newRow);
+        }
+
+        function getContactsFromSection(sectionId) {
+            const rows = document.querySelectorAll(`#${sectionId} .contact-rows .row`);
+            let contacts = [];
+            rows.forEach(row => {
+                const nome = row.querySelector('.c-nome').value;
+                const email = row.querySelector('.c-email').value;
+                const whats = row.querySelector('.c-whats').value;
+                if (nome || email || whats) {
+                    contacts.push(`${nome} | ${email} | ${whats}`);
+                }
+            });
+            return contacts.join('; ');
+        }
+
+        function enviarFormulario() {
+            const nomeEscritorio = document.getElementById('nome_escritorio').value;
+            if (!nomeEscritorio) {
+                alert('Por favor, informe o nome do escritório.');
+                return;
+            }
+
+            let body = `DADOS DO ESCRITÓRIO\n`;
+            body += `----------------------------------\n`;
+            body += `NOME DO ESCRITÓRIO: ${nomeEscritorio}\n`;
+            body += `QUANTIDADE TOTAL DE EMPRESAS: ${document.getElementById('qtd_total').value}\n`;
+            body += `QUANTIDADE TOTAL DE EMPRESAS (COM ESCRITA FISCAL): ${document.getElementById('qtd_fiscal').value}\n`;
+            body += `QUANTIDADE TOTAL DE EMPRESAS (COM CONTABILIDADE): ${document.getElementById('qtd_contabil').value}\n`;
+            body += `QUANTIDADE TOTAL DE EMPRESAS (FOLHA DE PAGAMENTOS): ${document.getElementById('qtd_folha').value}\n`;
+            body += `POSSUI BUSCADOR DE NOTAS: ${document.getElementById('possui_buscador').value} (${document.getElementById('nome_buscador').value})\n`;
+            body += `TOTAL DE EMPREGADOS + PROLABORE: ${document.getElementById('total_empregados').value}\n\n`;
+
+            body += `DADOS DE CONTATO\n`;
+            body += `----------------------------------\n`;
+            body += `FISCAL: ${getContactsFromSection('section_fiscal')}\n`;
+            body += `CONTÁBIL: ${getContactsFromSection('section_contabil')}\n`;
+            body += `FOLHA: ${getContactsFromSection('section_folha')}\n`;
+            body += `GERAL: ${getContactsFromSection('section_geral')}\n\n`;
+
+            body += `INFORMAÇÕES ADICIONAIS\n`;
+            body += `----------------------------------\n`;
+            body += `Expectativa de uso: ${document.getElementById('expectativa_uso').value}\n`;
+            body += `Usa Honorários: ${document.getElementById('usa_honorarios').value}\n\n`;
+
+            body += `PARTICULARIDADES\n`;
+            body += `----------------------------------\n`;
+            body += `FOLHA: ${document.getElementById('part_folha').value}\n`;
+            body += `FISCAL: ${document.getElementById('part_fiscal').value}\n`;
+            body += `CONTÁBIL: ${document.getElementById('part_contabil').value}\n`;
+
+            const subject = `IMPLANTAÇÃO CLIENTE: ${nomeEscritorio}`;
+            const mailtoLink = `mailto:ivan.ramalho@thomsonreuters.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+</html>
